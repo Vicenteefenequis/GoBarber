@@ -1,20 +1,19 @@
-/* eslint-disable prettier/prettier */
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class User extends Model {
-  static init(sequelize) {
+  static init (sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
-        password_has: Sequelize.STRING,
-        provider: Sequelize.BOOLEAN,
+        password_hash: Sequelize.STRING,
+        provider: Sequelize.BOOLEAN
       },
       {
-        sequelize,
+        sequelize
       }
-    );
+    )
   }
 }
 
-export default User;
+export default User

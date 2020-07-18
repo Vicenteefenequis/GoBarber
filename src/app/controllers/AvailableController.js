@@ -1,7 +1,6 @@
 import { startOfDay, endOfDay, setHours, setMinutes, setSeconds, format, isAfter } from 'date-fns'
 import Appointment from '../models/Appointment'
 import { Op } from 'sequelize'
-import { util } from 'prettier'
 
 class AvailableController {
   async index (req, res) {
@@ -48,7 +47,6 @@ class AvailableController {
           isAfter(value, new Date()) &&
           !appointments.find(a =>
             format(a.date, 'HH:mm') === time
-
           )
       }
     })

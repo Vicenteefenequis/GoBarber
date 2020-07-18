@@ -48,13 +48,18 @@ class AppointmentController {
 
     const { provider_id, date } = req.body
 
+    // Check if User is scoring with himself
+    if (req.userId === provider_id) {
+      return res.status(400).json({ error: 'User does not schedule appointment with himself' })
+    }
+
     // Check if provider_id is a provider
     //
-    const isProvider = await User.findOne({
+    const checkIsProvider = await User.findOne({
       where: { id: provider_id, provider: true }
     })
 
-    if (!isProvider) {
+    if (!checkIsProvider) {
       return res.status(401).json({ error: 'You can only create appointments with providers' })
     }
 
